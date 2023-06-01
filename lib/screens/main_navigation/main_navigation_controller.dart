@@ -30,10 +30,10 @@ class MainNavigationController extends GetxController {
 
   List<Widget> buildScreens() {
     return [
-      const HomeScreen(),
-      const HomeScreen(),
-      const HomeScreen(),
-      const HomeScreen(),
+      HomeScreen(),
+      HomeScreen(),
+      HomeScreen(),
+      HomeScreen(),
     ];
   }
 

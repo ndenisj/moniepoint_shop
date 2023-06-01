@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:moniepoint_shop/services/logger.dart';
 import 'package:moniepoint_shop/services/route_service.dart';
 import 'package:moniepoint_shop/styles/moniepoint_theme.dart';
-import 'package:moniepoint_shop/styles/styles.dart';
 
 import 'app_binding.dart';
 import 'app_links.dart';

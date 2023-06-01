@@ -40,6 +40,9 @@ dependencies:
   intl: ^0.18.1
   iconsax: ^0.0.8
   shared_preferences: ^2.1.1
+  badges: ^3.1.1
+  custom_rating_bar: ^2.0.5
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

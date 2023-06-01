@@ -124,7 +124,7 @@ ThemeData lightTheme(context) {
     appBarTheme: AppBarTheme(
       elevation: 0,
       iconTheme: const IconThemeData(
-        color: lightSecondaryText,
+        color: monieSecondaryColor,
       ),
       titleTextStyle: MonieTheme.of(context).bodyText2.copyWith(
             color: MonieTheme.of(context).primaryText,
@@ -134,8 +134,9 @@ ThemeData lightTheme(context) {
     iconTheme: IconThemeData(
       color: MonieTheme.of(context).secondaryColor,
     ),
+    dividerTheme: DividerThemeData(color: Colors.grey[200]),
     inputDecorationTheme: InputDecorationTheme(
-      contentPadding: EdgeInsets.all(8),
+      contentPadding: EdgeInsets.all(6),
       hintStyle: MonieTheme.of(context).bodyText2,
       errorStyle: MonieTheme.of(context).bodyText2.copyWith(color: danger),
       filled: true,
@@ -153,27 +154,27 @@ ThemeData lightTheme(context) {
           color: lightFormBorderColor,
           width: 2,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: lightFormBorderColor,
           width: 2,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       errorBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: danger,
           width: 2,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: const BorderSide(
           color: danger,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
       ),
       prefixIconColor: Colors.grey,
       // prefixStyle: MonieTheme.of(context).bodyText1.copyWith(
