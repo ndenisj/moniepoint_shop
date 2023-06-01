@@ -29,20 +29,49 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final DetailsController controller = Get.find();
 
   late TabController _tabController;
+  // screen animation
+  late AnimationController _animationController;
+  late Animation<double> _positionAnimation;
+  late Animation<double> _opacityAnimation;
+  //
 
   @override
   void initState() {
     super.initState();
+
     _tabController = TabController(length: 2, vsync: this);
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+
+    _positionAnimation = Tween<double>(begin: 200.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeOut,
+      ),
+    );
+
+    // Start the animation when the screen is loaded
+    _animationController.forward();
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -69,23 +98,41 @@ class _DetailsScreenState extends State<DetailsScreen>
         ],
       ),
       bottomNavigationBar: buildBottomNavigationBar(context),
-      body: Obx(
-        () => SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              buildImageSelectionArea(context),
-              buildStoreNameArea(context),
-              const SizedBox(height: 10),
-              buildProductName(context),
-              const SizedBox(height: 10),
-              buildRatingRow(context),
-              const SizedBox(height: 20),
-              buildTabBar(context),
-              buildTabBarViewArea(context),
-            ],
-          ),
-        ),
+      body: AnimatedBuilder(
+        animation: _animationController,
+        builder: (BuildContext context, Widget? child) {
+          return Obx(
+            () => Stack(
+              children: [
+                Positioned(
+                  top: _positionAnimation.value,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Opacity(
+                    opacity: _opacityAnimation.value,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          buildImageSelectionArea(context),
+                          buildStoreNameArea(context),
+                          const SizedBox(height: 10),
+                          buildProductName(context),
+                          const SizedBox(height: 10),
+                          buildRatingRow(context),
+                          const SizedBox(height: 20),
+                          buildTabBar(context),
+                          buildTabBarViewArea(context),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
