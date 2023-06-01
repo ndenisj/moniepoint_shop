@@ -159,7 +159,9 @@ List<ServiceModel> serviceList = [
 ];
 
 List<String> mainSliderList = [
-  "assets/images/5.png",
-  "assets/images/6.png",
-  "assets/images/7.png",
+  // "assets/images/5.png",
+  // "assets/images/6.png",
+  // "assets/images/7.png",
+  "assets/images/8.png",
+  "assets/images/9.png",
 ];

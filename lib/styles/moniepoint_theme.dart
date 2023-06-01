@@ -137,7 +137,8 @@ ThemeData lightTheme(context) {
     dividerTheme: DividerThemeData(color: Colors.grey[200]),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: EdgeInsets.all(6),
-      hintStyle: MonieTheme.of(context).bodyText2,
+      hintStyle:
+          MonieTheme.of(context).bodyText2.copyWith(color: Color(0xFFCDD0D4)),
       errorStyle: MonieTheme.of(context).bodyText2.copyWith(color: danger),
       filled: true,
       fillColor: lightFormFillColor,
@@ -151,7 +152,8 @@ ThemeData lightTheme(context) {
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(
-          color: lightFormBorderColor,
+          color: Color(0xFFCDD0D4), //
+          // color: lightFormBorderColor,
           width: 2,
         ),
         borderRadius: BorderRadius.circular(8),

@@ -1,19 +1,36 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:moniepoint_shop/models/product_model.dart';
 import 'package:moniepoint_shop/styles/styles.dart';
 
-class ProductWidget extends StatelessWidget {
+class ProductWidget extends StatefulWidget {
   ProductWidget({super.key, required this.onTap, required this.product});
 
   final Function() onTap;
   final Product product;
 
   @override
+  State<ProductWidget> createState() => _ProductWidgetState();
+}
+
+class _ProductWidgetState extends State<ProductWidget> {
+  Random random = Random();
+
+  late int randomIndex;
+
+  @override
+  void initState() {
+    randomIndex = random.nextInt(widget.product.images!.length);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         decoration: BoxDecoration(
           color: white,
@@ -34,7 +51,7 @@ class ProductWidget extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(product.images!.first),
+                        image: AssetImage(widget.product.images![randomIndex]),
                         fit: BoxFit.cover,
                         alignment: Alignment.topCenter,
                       ),
@@ -59,7 +76,7 @@ class ProductWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.type!,
+                      widget.product.type!,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 10.sp,
@@ -68,7 +85,7 @@ class ProductWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      product.name!,
+                      widget.product.name!,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 12.sp,

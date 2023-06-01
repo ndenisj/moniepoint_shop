@@ -31,12 +31,12 @@ class HomeScreen extends GetView<HomeController> {
       controller: controller.scrollController,
       slivers: [
         SliverAppBar(
-          expandedHeight: 220.0.h,
+          expandedHeight: 250.0.h,
           flexibleSpace: buildTopSlider(context),
         ),
         SliverAppBar(
           pinned: true,
-          expandedHeight: 100.h,
+          expandedHeight: 80.h,
           flexibleSpace: buildServicesSlider(context),
         ),
         SliverAppBar(
@@ -44,7 +44,7 @@ class HomeScreen extends GetView<HomeController> {
           flexibleSpace: buildProductTitleRow(context),
         ),
         SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           sliver: MyGridView(items: productList),
         ),
       ],
@@ -53,11 +53,11 @@ class HomeScreen extends GetView<HomeController> {
 
   Widget buildTopSearchArea(BuildContext context) {
     return Container(
-      height: 100.h,
+      height: 110.h,
       padding: EdgeInsets.only(
         left: 18.w,
         right: 18.w,
-        top: MediaQuery.of(context).padding.top,
+        top: MediaQuery.of(context).padding.top + 20,
       ),
       color: Colors.white.withOpacity(controller.opacity.value),
       child: Row(
@@ -91,8 +91,11 @@ class HomeScreen extends GetView<HomeController> {
 
   Widget buildTopSlider(BuildContext context) {
     return Container(
-      height: 260.h,
+      height: 290.h,
       width: double.infinity,
+      color: controller.currentTopPageIndex.value == 0
+          ? Color(0xffE8EBEA)
+          : Color(0xffebe2e2),
       child: Stack(
         children: [
           PageView.builder(
@@ -109,21 +112,21 @@ class HomeScreen extends GetView<HomeController> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(slide),
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
+                    fit: BoxFit.contain,
+                    alignment: Alignment.bottomCenter,
                   ),
                 ),
               );
             },
           ),
-          Align(
-            alignment: Alignment(1, -0.2),
-            child: Container(
-              height: 20,
-              width: 70.w,
-              child: buildTopIndicator(),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment(1, -0.2),
+          //   child: Container(
+          //     height: 20,
+          //     width: 70.w,
+          //     child: buildTopIndicator(),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -217,7 +220,7 @@ class HomeScreen extends GetView<HomeController> {
   Widget buildTopIndicator() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: List<Widget>.generate(3, (int index) {
+      children: List<Widget>.generate(2, (int index) {
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 2.0),
           width: controller.currentTopPageIndex == index ? 15.w : 4.0.w,
