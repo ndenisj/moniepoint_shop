@@ -5,6 +5,10 @@ import 'package:moniepoint_shop/services/logger.dart';
 class HomeController extends GetxController {
   Logger logger = Logger('HomeController');
   late ScrollController scrollController;
+  final PageController pageController = PageController(initialPage: 0);
+
+  RxInt currentServicePageIndex = 0.obs;
+  RxInt currentTopPageIndex = 0.obs;
   RxDouble opacity = 0.0.obs;
 
   @override
@@ -18,6 +22,7 @@ class HomeController extends GetxController {
   void dispose() {
     scrollController.removeListener(_onScroll);
     scrollController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 

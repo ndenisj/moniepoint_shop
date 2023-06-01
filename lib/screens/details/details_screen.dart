@@ -46,7 +46,7 @@ class _DetailsScreenState extends State<DetailsScreen>
     _tabController = TabController(length: 2, vsync: this);
 
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 700),
       vsync: this,
     );
 
