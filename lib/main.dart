@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       builder: (context, child) => GetMaterialApp(
-        title: 'Moniepoint Store',
+        title: 'Monie Store',
         debugShowCheckedModeBanner: false,
         initialBinding: bindings,
         theme: lightTheme(context),
